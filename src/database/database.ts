@@ -1,23 +1,8 @@
 import fs from 'node:fs/promises'
-
+import { Rows, FilterProps, DatabaseStorage } from '../types/OrderTyps.js'
 
 const DATABASE_PATH = new URL('db.json', import.meta.url)
 
-type FilterProps = {
-    status?: string
-    id?: string
-}
-
-type Rows = {
-    id: string
-    order: string
-    price: number
-    status: string
-}
-
-type DatabaseStorage = {
-    [tableName: string]: Rows[]
-}
 
 class Database {
     #database: DatabaseStorage = {}
