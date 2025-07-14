@@ -1,28 +1,13 @@
 import express from 'express'
+import { orderRoutes } from './routes/ordersRoutes'
 
-const PORT = 3333
+const PORT = 3334
 const app = express()
+app.use(express.json())
 
-app.get('/orders', (request, response) => {
-    const { status } = request.query
-    response.send('Orders List')
-})
-
-app.get('orders/:id', (request, response) => {
-    const { id } = request.params
-    response.send(`Order ID: ${id}`)
-})
-
-app.post('orders/', (request, response) => {
-    response.send('Order sent!')
-})
-
-app.patch('orders/:id', (request, response) => {
-    response.send('Order updated!')
-})
-
+app.use(orderRoutes)
 
 
 app.listen(PORT, () => {
-    console.log(`Server has been started at http://localhost:3333/`)
+    console.log(`Server has been started at http://localhost:3334/`)
 })
