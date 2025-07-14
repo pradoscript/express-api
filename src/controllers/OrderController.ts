@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { database } from '../database/database.js'
 import { randomUUID } from 'crypto'
+import { z } from 'zod'
 
 export class OrderController {
 
@@ -22,7 +23,11 @@ export class OrderController {
     }
 
     create(request: Request, response: Response) {
-        const { order, price } = request.body
+        const bodySchema = z.object({
+            order: z.string().nonempty('Order is required'),
+            price: z.number().positive()
+        })
+        const { order, price } = bodySchema.parse(request.body)
         const newOrder = {
             id: randomUUID(),
             order: order,
