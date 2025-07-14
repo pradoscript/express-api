@@ -67,6 +67,9 @@ class Database {
         if (index !== -1) {
             data[index].status = 'closed'
             this.#persist()
+            return data[index]
+        } else {
+            return false
         }
     }
 
@@ -78,6 +81,8 @@ class Database {
             data.splice(index, 1)
             this.#persist()
             return deletedRow
+        } else {
+            return false
         }
     }
 

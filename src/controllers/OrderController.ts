@@ -36,13 +36,21 @@ export class OrderController {
 
     update(request: Request, response: Response) {
         const { id } = request.params
-        database.update('orders', id)
-        response.status(200).json({ message: 'Order updated successfully' })
+        let data = database.update('orders', id)
+
+        if (!data) {
+            return response.status(404).json({ error: 'Order not found' })
+        }
+
+        response.status(200).json(data)
     }
 
     remove(request: Request, response: Response) {
         const { id } = request.params
         let data = database.delete('orders', id)
+        if (!data) {
+            return response.status(404).json({ error: 'Order not found' })
+        }
         response.status(200).send(data)
     }
 }
