@@ -1,17 +1,17 @@
 import { Router } from 'express'
 import { OrderController } from '../controllers/OrderController.js'
 
-export const orderRoutes = Router()
+export const ordersRoutes = Router()
 const orderController = new OrderController()
 
 
-orderRoutes.get('/orders', orderController.index)
+ordersRoutes.get('/', orderController.index)
 
-orderRoutes.get('/orders/:id', orderController.show)
+ordersRoutes.get('/:id', orderController.show)
 
-orderRoutes.post('/orders', orderController.create)
+ordersRoutes.post('/', orderController.create)
 
-orderRoutes.patch('/orders/:id', orderController.update)
+ordersRoutes.patch('/:id', orderController.update)
 
-orderRoutes.delete('/orders/:id', orderController.remove)
+ordersRoutes.delete('/:id', orderController.remove)
 

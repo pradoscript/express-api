@@ -1,11 +1,11 @@
 import express from 'express'
-import { orderRoutes } from './routes/ordersRoutes'
+import { routes } from './routes/index.js'
 
 const PORT = 3334
 const app = express()
 app.use(express.json())
 
-app.use(orderRoutes)
+app.use(routes)
 
 
 app.listen(PORT, () => {
