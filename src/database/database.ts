@@ -37,6 +37,7 @@ class Database {
     create(table: string, data: Rows) {
         if (!this.#database[table]) {
             this.#database[table] = [data]
+            this.#persist()
         } else {
             this.#database[table].push(data)
             this.#persist()
